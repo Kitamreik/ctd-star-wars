@@ -41,12 +41,53 @@ fetch(url2)
     // response redirect to?
 })
 
+// template for the DOM
+let yoda = 
+`<div>
+    <span>Name:</span>
+    <br>
+    <span>Height:</span>
+    <br>
+    <span>Mass:</span>
+    <br>
+    <span>Hair Color:</span>
+    <br>
+    <span>Skin Color:</span>
+    <br>
+    <span>Eye Color:</span>
+    <br>
+    <span>Birth Year:</span>
+    <br>
+    <span>Gender: </span>
+    <br>
+    <span>Homeworld:</span>
+    <br>
+    <span>Films:</span>
+    <br>
+    <span>Vehicles:</span>
+    <br>
+    <span>Starships:</span>
+    <br>
+    <span>Created:</span>
+    <br>
+    <span>Edited:</span>
+    <br>
+    <span>-----------------------------</span>
+</div>`;
+
+// yoda is the DOM template
+// 15 different data points
+document.getElementById("entry").innerHTML = yoda;
+document.getElementById("first-link").innerHTML = url;
+document.getElementById("entry-two").innerHTML = yoda;
+document.getElementById("second-link").innerHTML = url2;
+
 // define the asych function
 async function starWars(url){
     // define the response and pass the url here
     // store the fetched data
     const response = await fetch(url);
-
+    
     // ----------INSERT STATUS CODES ---------
     // -------- INSERT stardata -------
     // 200 = ok
@@ -54,8 +95,8 @@ async function starWars(url){
         // INSERT stardata
         // declare the data and store in JSON form using await
         var stardata = await response.json();
+        
 
-    
         // INSERT STATUS CODES 
         // handling status codes of response 
         console.log(response.status); 
@@ -65,7 +106,7 @@ async function starWars(url){
         // show the data in the console
         // send the request by showing the data
         // handle the data
-        console.log(stardata);
+        console.log(stardata);    
     } else if (response.status === 404) {
     // 404 = not found
         const error2 = "This is a 404 error message."
@@ -74,8 +115,8 @@ async function starWars(url){
         alert("There is a server error with the URL. Please try again by refreshing the page and/or contacting the system adminstrator.");
     } else {
         alert("Please contact the system adminstrator.");
+        //  account if the URL throws a server error = 500
     }
-    //  account if the URL throws a server error = 500
 };
 
 async function starWars(url2){
@@ -110,61 +151,13 @@ async function starWars(url2){
         alert("There is a server error with the URL. Please try again by refreshing the page and/or contacting the system adminstrator.");
     } else {
         alert("Please contact the system adminstrator.");
+        //  account if the URL throws a server error = 500
     }
-    //  account if the URL throws a server error = 500
 };
+
+
 
 // call the async function
 starWars(url);
 starWars(url2);
-
-function show(stardata) {
-    let entry = `
-    <tr>
-        <th>Name:</th>
-        <th>Height:</th>
-        <th>Mass:</th>
-        <th>Hair Color:</th>
-        <th>Skin Color:</th>
-        <th>Eye Color:</th>
-        <th>Birth Year:</th>
-        <th>Gender: </th>
-        <th>Homeworld:</th>
-        <th>Films:</th>
-        <th>Vehicles:</th>
-        <th>Starships:</th>
-        {/* do I need the below info? */}
-        <th>Created:</th>
-        <th>Edited:</th>
-        <th>URL: url</th>
-    </tr> 
-    `;
-    
-    // for of loop to access all of the rows of the content - REVISE THIS
-    for (let log of stardata.list) {
-        entry += ` 
-        <tr>
-            <td>${log.name}</td>
-            <td>${log.height}</td>
-            <td>${log.mass}</td>
-            <td>${log.hair}</td>
-            <td>${log.skin}</td>
-            <td>${log.eye}</td>
-            <td>${log.birth}</td>
-            <td>${log.gender}</td>
-            <td>${log.homeworld}</td>
-            <td>${log.films}</td>
-            <td>${log.vehicles}</td>
-            <td>${log.starships}</td>
-            {/* do I need the below info? */}
-            <td>${log.created}</td>
-            <td>${log.edited}</td>
-            <td>${log.url}</td>
-        </tr> 
-        `;
-    };
-    // setting innerHTML
-    document.getElementById("star-table").innerHTML = entry;
-    
-};
 // END
