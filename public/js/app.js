@@ -1,6 +1,8 @@
 // store the API
 const url = "https://swapi.dev/api/people/1"
 const url2 = "https://swapi.dev/api/people/2"
+
+const url3 = "https://swapi.dev/api/films"
 // ex --> people/1 --> Luke Skywalker
 // ex 2 --> path --> all of the paths
 // ex 3 --> people --> all of the people with their data
@@ -43,44 +45,70 @@ fetch(url2)
 
 // template for the DOM
 let yoda = 
-`<div>
-    <span>Name:</span>
-    <br>
-    <span>Height:</span>
-    <br>
-    <span>Mass:</span>
-    <br>
-    <span>Hair Color:</span>
-    <br>
-    <span>Skin Color:</span>
-    <br>
-    <span>Eye Color:</span>
-    <br>
-    <span>Birth Year:</span>
-    <br>
-    <span>Gender: </span>
-    <br>
-    <span>Homeworld:</span>
-    <br>
-    <span>Films:</span>
-    <br>
-    <span>Vehicles:</span>
-    <br>
-    <span>Starships:</span>
-    <br>
-    <span>Created:</span>
-    <br>
-    <span>Edited:</span>
-    <br>
-    <span>-----------------------------</span>
-</div>`;
+    `<div>
+        <span>Name:</span>
+        <br>
+        <span>Height:</span>
+        <br>
+        <span>Mass:</span>
+        <br>
+        <span>Hair Color:</span>
+        <br>
+        <span>Skin Color:</span>
+        <br>
+        <span>Eye Color:</span>
+        <br>
+        <span>Birth Year:</span>
+        <br>
+        <span>Gender: </span>
+        <br>
+        <span>Homeworld:</span>
+        <br>
+        <span>Films:</span>
+        <br>
+        <span>Vehicles:</span>
+        <br>
+        <span>Starships:</span>
+        <br>
+        <span>Created:</span>
+        <br>
+        <span>Edited:</span>
+        <br>
+        <span>-----------------------------</span>
+    </div>`;
 
-// yoda is the DOM template
-// 15 different data points
-document.getElementById("entry").innerHTML = yoda;
-document.getElementById("first-link").innerHTML = url;
-document.getElementById("entry-two").innerHTML = yoda;
-document.getElementById("second-link").innerHTML = url2;
+let finish = 
+    `<div>
+        <span>Name:${yoda.stardata}</span>
+        <br>
+        <span>Height:${yoda.stardata}</span>
+        <br>
+        <span>Mass:${yoda.stardata}</span>
+        <br>
+        <span>Hair Color:${yoda.stardata}</span>
+        <br>
+        <span>Skin Color:${yoda.stardata}</span>
+        <br>
+        <span>Eye Color:${yoda.stardata}</span>
+        <br>
+        <span>Birth Year:${yoda.stardata}</span>
+        <br>
+        <span>Gender:${yoda.stardata} </span>
+        <br>
+        <span>Homeworld:${yoda.stardata}</span>
+        <br>
+        <span>Films:${yoda.stardata}</span>
+        <br>
+        <span>Vehicles:${yoda.stardata}</span>
+        <br>
+        <span>Starships:${yoda.stardata}</span>
+        <br>
+        <span>Created:${yoda.stardata}</span>
+        <br>
+        <span>Edited:${yoda.stardata}</span>
+        <br>
+        <span>-----------------------------</span>
+    </div>`;
 
 // define the asych function
 async function starWars(url){
@@ -131,8 +159,7 @@ async function starWars(url2){
         // INSERT stardata
         // declare the data and store in JSON form using await
         var stardata = await response.json();
-
-    
+       
         // INSERT STATUS CODES 
         // handling status codes of response 
         console.log(response.status); 
@@ -155,9 +182,15 @@ async function starWars(url2){
     }
 };
 
-
-
 // call the async function
 starWars(url);
 starWars(url2);
+
+
+// works
+// document.getElementById("entry").innerHTML = finish;
+document.getElementById("entry-B").innerHTML = finish;
+
+document.getElementById("first-link").innerHTML = url;
+document.getElementById("second-link").innerHTML = url2;
 // END
